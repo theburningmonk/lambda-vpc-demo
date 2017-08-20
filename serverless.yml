@@ -1,0 +1,27 @@
+service: vpc-demo
+
+plugins:
+  - serverless-vpc-discovery
+
+custom:
+  vpc:
+    vpcName: playground
+    subnetNames:
+      - 'playground.internal.us-east-1a'
+      - 'playground.internal.us-east-1b'
+    securityGroupNames:
+      - 'vpc_demo'
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  handler:
+    handler: handler.handler
+    events:
+      - http:
+          path: /
+          method: get
