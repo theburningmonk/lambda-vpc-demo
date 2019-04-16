@@ -5,16 +5,18 @@ plugins:
 
 custom:
   vpc:
-    vpcName: playground
+    vpcName: vpc_${self:provider.stage}
     subnetNames:
-      - 'playground.internal.us-east-1a'
-      - 'playground.internal.us-east-1b'
+      - vpc_${self:provider.stage}.us-east-1a
+      - vpc_${self:provider.stage}.us-east-1c
+      - vpc_${self:provider.stage}.us-east-1d
+      - vpc_${self:provider.stage}.us-east-1e
     securityGroupNames:
-      - 'vpc_demo'
+      - vpc_${self:provider.stage}_sg
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   stage: dev
   region: us-east-1
 
